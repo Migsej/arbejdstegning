@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import math
 
 
 paptykke = 3 #mm
@@ -15,7 +16,6 @@ def pretyprint(liste):
 
 
 def round_down(value, decimals):
-    import math
     return math.floor(value * 100)/100.0
 
 
@@ -23,7 +23,7 @@ def main():
      
     # Load an color image in grayscale
     img = cv2.imread('billede.png',0)
-    (thresh, blackwhite) = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+    (_, blackwhite) = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
     dimensions = blackwhite.shape
     print(dimensions) 
     
@@ -34,7 +34,6 @@ def main():
     result = []
     for i in range(LAYERS):
         newarray = blackwhite[width*i:width*i+width]
-        white = np.count_nonzero(newarray==255)
         black = np.count_nonzero(newarray==0)
         element = (black//width)/len(blackwhite[0])
         result.append(element*dimensions[0]*forhold/2)
