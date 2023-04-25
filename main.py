@@ -2,9 +2,11 @@ import cv2
 import numpy as np
 
 
-LAYERS = 58
+paptykke = 3 #mm
 
-HEIGHT = 250
+HEIGHT = 250 #mm
+
+LAYERS = HEIGHT//paptykke
 
 def pretyprint(liste):
     for element in liste:
